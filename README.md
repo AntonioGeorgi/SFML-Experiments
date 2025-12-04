@@ -1,3 +1,21 @@
+I didn't wanna delete the Template stuff so I am just writing above.
+
+In VSCode you and build and run the program by clicking ctrl+shift+r in a task terminal???
+The terminal can be opened by running a task from the text input top center. The names are hopefully self explanatory. I you don't wanna use that stuff follow the steps below and open the .exe manually 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # CMake SFML Project Template
 
 This repository template should allow for a fast and hassle-free kick start of your next SFML project using CMake.

@@ -1,11 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <Constants.h>
+
 
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode({200, 200}), "SFML works!");
-
+    sf::RenderWindow window(sf::VideoMode({TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT}), "SFML works!");
+    window.setSize(WINDOW_SIZE);
+    
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
