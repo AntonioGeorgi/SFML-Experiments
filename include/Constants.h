@@ -1,10 +1,9 @@
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#pragma once
+
 #include <SFML/Graphics.hpp>
 
 constexpr unsigned int TILE_SIZE  = 10;
-constexpr unsigned int MAP_WIDTH = 20;
-constexpr unsigned int MAP_HEIGHT = 10;
-constexpr sf::Vector2u WINDOW_SIZE = {1500, 1000};
-
-#endif
+constexpr unsigned int MAP_WIDTH = 50;
+constexpr unsigned int MAP_HEIGHT = 50;
+constexpr bool ENDLESS_MAP = true;
+constexpr sf::Vector2u WINDOW_SIZE = {1000, 1000};

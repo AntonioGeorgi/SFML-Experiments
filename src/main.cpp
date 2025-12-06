@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <Constants.h>
+#include <Entity.h>
 
 
 int main()
@@ -12,27 +13,33 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
+    Entity player(sf::Vector2i(0,0), sf::Color::Red);
+
     const auto onClose = [&window](const sf::Event::Closed&)
     {
         window.close();
     };
 
-    const auto onKeyPressed = [&window](const sf::Event::KeyPressed& keyPressed)
+    const auto onKeyPressed = [&window, &player](const sf::Event::KeyPressed& keyPressed)
     {
         if (keyPressed.scancode == sf::Keyboard::Scancode::Escape)
             window.close();
         switch (keyPressed.scancode)
         {
             case sf::Keyboard::Scancode::A:
+                player.move(-1, 0);
                 break;
 
             case sf::Keyboard::Scancode::W:
+                player.move(0, -1);
                 break;
 
             case sf::Keyboard::Scancode::D:
+                player.move(1, 0);
                 break;
 
             case sf::Keyboard::Scancode::S:
+                player.move(0, 1);
                 break;
 
             default:
@@ -66,6 +73,7 @@ int main()
         // draw everything here...
         // window.draw(...);
         window.draw(shape);
+        window.draw(player);
 
         // end the current frame
         window.display();
