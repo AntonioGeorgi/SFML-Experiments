@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <Constants.h>
-#include <Entity.h>
+#include <Player.h>
+#include <Wall.h>
 
 
 int main()
@@ -13,7 +14,14 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
-    Entity player(sf::Vector2i(0,0), sf::Color::Red);
+    Player player(sf::Vector2i(10,10));
+    sf::Vector2i playerPos = player.getPosition();
+    std::cout << "player-position: " << playerPos.x << ", " << playerPos.y << std::endl;
+
+
+    Wall wall(sf::Vector2i(15,15));
+    sf::Vector2i wallPos = wall.getPosition();
+    std::cout << "wall-position: " << wallPos.x << ", " << wallPos.y << std::endl;
 
     const auto onClose = [&window](const sf::Event::Closed&)
     {
@@ -24,27 +32,8 @@ int main()
     {
         if (keyPressed.scancode == sf::Keyboard::Scancode::Escape)
             window.close();
-        switch (keyPressed.scancode)
-        {
-            case sf::Keyboard::Scancode::A:
-                player.move(-1, 0);
-                break;
-
-            case sf::Keyboard::Scancode::W:
-                player.move(0, -1);
-                break;
-
-            case sf::Keyboard::Scancode::D:
-                player.move(1, 0);
-                break;
-
-            case sf::Keyboard::Scancode::S:
-                player.move(0, 1);
-                break;
-
-            default:
-                break;
-        }
+        sf::Keyboard::Scancode keyPressedScancode = keyPressed.scancode;
+        player.handleInput(keyPressedScancode);
     };
 
     const auto onResized = [&window](const sf::Event::Resized& resized)
@@ -74,6 +63,7 @@ int main()
         // window.draw(...);
         window.draw(shape);
         window.draw(player);
+        window.draw(wall);
 
         // end the current frame
         window.display();

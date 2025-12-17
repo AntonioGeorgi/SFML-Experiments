@@ -5,8 +5,8 @@
 class Entity : public sf::Drawable
 {
 public:
-    Entity(sf::Vector2i position_in_grid, sf::Color color);
-    Entity(int x, int y , sf::Color color);
+    Entity(sf::Vector2i position_in_grid, sf::Color color = sf::Color::Blue);
+    Entity(int x, int y , sf::Color color = sf::Color::Blue);
 
     void move(sf::Vector2i speed);
     void move(int dx, int dy);
