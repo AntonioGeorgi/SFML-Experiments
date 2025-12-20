@@ -10,7 +10,7 @@ Immovable::Immovable(sf::Vector2i pos, sf::Color color)
     setSquarePosition();
 }
 
-Immovable::Immovable(int x, int y , sf::Color color = sf::Color::White)
+Immovable::Immovable(int x, int y, sf::Color color = sf::Color::White)
     : Immovable({x, y}, color)
 {
 }

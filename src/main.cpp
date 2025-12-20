@@ -2,7 +2,8 @@
 #include <iostream>
 #include <Constants.h>
 #include <Player.h>
-#include <Wall.h>
+#include <Immovable.h>
+#include <Collider.h>
 
 
 int main()
@@ -14,14 +15,16 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
+    Collider collider;
+
     Player player(sf::Vector2i(10,10));
     sf::Vector2i playerPos = player.getPosition();
     std::cout << "player-position: " << playerPos.x << ", " << playerPos.y << std::endl;
 
 
-    Wall wall(sf::Vector2i(15,15));
-    sf::Vector2i wallPos = wall.getPosition();
-    std::cout << "wall-position: " << wallPos.x << ", " << wallPos.y << std::endl;
+    Immovable Immovable(sf::Vector2i(15,15));
+    sf::Vector2i ImmovablePos = Immovable.getPosition();
+    std::cout << "Immovable-position: " << ImmovablePos.x << ", " << ImmovablePos.y << std::endl;
 
     const auto onClose = [&window](const sf::Event::Closed&)
     {
@@ -63,7 +66,7 @@ int main()
         // window.draw(...);
         window.draw(shape);
         window.draw(player);
-        window.draw(wall);
+        window.draw(Immovable);
 
         // end the current frame
         window.display();

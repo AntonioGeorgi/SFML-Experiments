@@ -2,7 +2,7 @@
 #include <SFML/Window/Keyboard.hpp>
 
 Player::Player(sf::Vector2i pos, sf::Color color)
-    : Entity(pos, color)
+    : Moving(pos, color)
 {
 }
 

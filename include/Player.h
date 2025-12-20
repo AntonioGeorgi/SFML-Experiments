@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.h"
+#include "Moving.h"
 
-class Player : public Entity
+class Player : public Moving
 {
 public:
     Player(sf::Vector2i pos, sf::Color color = sf::Color::Blue);
