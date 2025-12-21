@@ -1,25 +1,38 @@
 #include "Player.h"
 #include <SFML/Window/Keyboard.hpp>
+#include <iostream>
 
-Player::Player(sf::Vector2i pos, sf::Color color)
-    : Moving(pos, color)
+Player::Player(sf::Vector2i pos, Collider& collider, sf::Color color)
+    : Moving(pos, color), collider(collider)
 {
 }
 
 void Player::handleInput(sf::Keyboard::Scancode keyPressedScancode)
 {
     if (keyPressedScancode == sf::Keyboard::Scancode::A || keyPressedScancode == sf::Keyboard::Scancode::Left) {
-        move(-1, 0);
+        if (collider.tryMoveEntity(getPosition(), getPosition() + sf::Vector2i(-1, 0))) {
+            move(-1, 0);
+            // std::cout << "Movement to the left!" << std::endl;
+        }
+        // else {
+        //     std::cout << "Movement blocked to the left!" << std::endl;
+        // }
     }
     else if (keyPressedScancode == sf::Keyboard::Scancode::D || keyPressedScancode == sf::Keyboard::Scancode::Right) {
-        move(1, 0);
+        if (collider.tryMoveEntity(getPosition(), getPosition() + sf::Vector2i(1, 0))) {
+            move(1, 0);
+        }
     }
 
     else if (keyPressedScancode == sf::Keyboard::Scancode::W || keyPressedScancode == sf::Keyboard::Scancode::Up) {
-        move(0, -1);
+        if (collider.tryMoveEntity(getPosition(), getPosition() + sf::Vector2i(0, -1))) {
+            move(0, -1);
+        }
     }
     else if (keyPressedScancode == sf::Keyboard::Scancode::S || keyPressedScancode == sf::Keyboard::Scancode::Down) {
-        move(0, 1);
+        if (collider.tryMoveEntity(getPosition(), getPosition() + sf::Vector2i(0, 1))) {
+            move(0, 1);
+        }
     }
 }
 

@@ -5,6 +5,15 @@
 #include <immovable.h>
 #include <Constants.h>
 
+namespace std {
+    template <>
+    struct hash<sf::Vector2i> {
+        std::size_t operator()(const sf::Vector2i& v) const {
+            return std::hash<int>()(v.x) ^ (std::hash<int>()(v.y) << 1);
+        }
+    };
+}
+
 class Collider
 {
 public:
@@ -32,6 +41,6 @@ public:
     bool removeImmovableAt(const sf::Vector2i& position);
 
 private:
-    std::unordered_map<sf::Vector2i, Moving&> mapMovingEntities;
-    std::unordered_map<sf::Vector2i, Immovable&> mapImmovableEntities;
+    std::unordered_map<sf::Vector2i, Moving*> mapMovingEntities;
+    std::unordered_map<sf::Vector2i, Immovable*> mapImmovableEntities;
 };

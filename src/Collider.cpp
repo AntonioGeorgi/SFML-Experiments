@@ -1,7 +1,10 @@
 #include "Collider.h"
+#include <iostream>
 
 Collider::Collider()
 {
+    // mapImmovableEntities = {};
+    // mapMovingEntities = {};
 }
 
 bool Collider::tryAddEntity(const Moving& entity)
@@ -9,7 +12,7 @@ bool Collider::tryAddEntity(const Moving& entity)
     sf::Vector2i pos = entity.getPosition();
     if (isOccupied(pos))
         return false;
-    mapMovingEntities[pos] = entity;
+    mapMovingEntities[pos] = const_cast<Moving*>(&entity);
     return true;
 }
 bool Collider::tryAddEntity(const Immovable& entity)
@@ -17,11 +20,14 @@ bool Collider::tryAddEntity(const Immovable& entity)
     sf::Vector2i pos = entity.getPosition();
     if (isOccupied(pos))
         return false;
-    mapImmovableEntities[pos] = entity;
+    mapImmovableEntities[pos] = const_cast<Immovable*>(&entity);
     return true;
 }
 bool Collider::tryMoveEntity(const sf::Vector2i& fromPos, const sf::Vector2i& toPos)
 {
+    // std::cout<<"Trying to move entity from (" << fromPos.x << ", " << fromPos.y << ") to (" << toPos.x << ", " << toPos.y << ")\n";
+    // std::cout<<"Is fromPos occupied by moving? " << isOccupiedByMoving(fromPos) << "\n";
+    // std::cout<<"Is toPos occupied? " << isOccupied(toPos) << "\n";
     if (!isOccupiedByMoving(fromPos) || isOccupied(toPos))
         return false;
     auto entity = mapMovingEntities[fromPos];

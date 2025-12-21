@@ -12,7 +12,7 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp src/Moving.cpp src/Player.cpp src/Immovable.cpp src/Wall.cpp src)
+add_executable(main src/main.cpp src/Moving.cpp src/Player.cpp src/Immovable.cpp src/Wall.cpp src/Collider.cpp)
 target_compile_features(main PRIVATE cxx_std_23)
 target_include_directories(main PUBLIC ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(main PRIVATE SFML::Graphics)

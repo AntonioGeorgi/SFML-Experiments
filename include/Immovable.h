@@ -6,7 +6,7 @@ class Immovable : public sf::Drawable
 {
 public:
     Immovable(sf::Vector2i pos, sf::Color color = sf::Color::White);
-    Immovable(int x, int y, sf::Color color = sf::Color::White);
+    //Immovable(int x, int y, sf::Color color = sf::Color::White);
     void setColor(sf::Color color);
 
     sf::Vector2i getPosition() const { return position; }

@@ -17,14 +17,16 @@ int main()
 
     Collider collider;
 
-    Player player(sf::Vector2i(10,10));
+    Player player(sf::Vector2i(10,10), collider);
     sf::Vector2i playerPos = player.getPosition();
     std::cout << "player-position: " << playerPos.x << ", " << playerPos.y << std::endl;
+    collider.tryAddEntity(player);
 
 
     Immovable Immovable(sf::Vector2i(15,15));
     sf::Vector2i ImmovablePos = Immovable.getPosition();
     std::cout << "Immovable-position: " << ImmovablePos.x << ", " << ImmovablePos.y << std::endl;
+    collider.tryAddEntity(Immovable);
 
     const auto onClose = [&window](const sf::Event::Closed&)
     {
